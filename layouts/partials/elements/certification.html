@@ -1,0 +1,12 @@
+{{ $icon := .icon | default "" }}
+{{ if .href }}
+<a href="{{ .href }}" class="certification-icon" data-toggle="tooltip" title="{{ .name }}" data-offset="0 10" rel="me" target="_blank">
+    {{ if $icon }}
+    <img src="{{ .icon }}" alt="{{ .name }}" />
+    {{ else }}
+    <i class="fa-strong fa-question"></i>
+    {{ end }}
+</a>
+{{ else }}
+    <img src="{{ .icon }}" width=75 alt="{{ .name }}" data-toggle="tooltip" title="{{ .name }}" data-offset="0 10" rel="me"/>
+{{ end }}

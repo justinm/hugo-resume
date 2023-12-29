@@ -4,19 +4,17 @@
    {{ $sections := slice "publications" "blog" }}
    {{ $site := .Site }}
    {{ range .Site.Params.sections }}
-      {{ $sectionName := . }}
+      {{ $sectionId := . }}
       {{ if in $projects . }}
-         {{ with $site.GetPage "section" (printf "projects/%s" .) }}
-            {{ .Scratch.Set "sectionId" $sectionName }} 
-            {{ partial "sectionSummary" . }}
+         {{ with $site.GetPage "section" (printf "projects/%s" $) }}
+            {{ partial "summary" (dict "section" . "sectionId" $sectionId) }}
          {{ end }}
       {{ else if in $sections . }}
          {{ with $site.GetPage "section" . }}
-            {{ .Scratch.Set "sectionId" $sectionName }} 
-            {{ partial "sectionSummary" . }}
+            {{ partial "summary" (dict "section" . "sectionId" $sectionId) }}
          {{ end }}
       {{ else }}
-         {{ partial (printf "portfolio/%s" . ) $.Site }}
+         {{ partial (printf "portfolio/%s" . ) $ }}
       {{ end }}
    {{ end }}
 {{ end }}

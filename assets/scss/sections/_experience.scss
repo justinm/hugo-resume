@@ -1,0 +1,33 @@
+@import "../_variables.scss";
+
+section.experience {
+  padding-top: 5rem !important;
+  padding-bottom: 5rem !important;
+
+  .date {
+    //color: $primaryLinkColor !important;
+    font-weight: 600;
+  }
+
+  .summary {
+    font-size: 1em;
+    font-style: italic;
+  }
+
+  ul.achievements {
+    font-size: 0.9em;
+  }
+
+  ul.technologies {
+    font-size: 1.3em;
+  }
+
+  h5.technologies {
+    color: #868e96;
+  }
+
+  blockquote {
+    border-left: 4px solid #BD5D38;
+    padding-left: 1em;
+  }
+}

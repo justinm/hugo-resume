@@ -1,0 +1,7 @@
+{{ $path := .path | default "tags" }}
+<ul class="tags">
+{{ range .tags }}
+{{ $href := printf "/%s/%s" $path (. | urlize) }}
+    <li><a class="tag" href="{{ $href }}">{{ . }}</a></li>
+{{ end }}
+</ul>

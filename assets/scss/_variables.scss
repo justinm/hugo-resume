@@ -1,0 +1,20 @@
+
+//$primaryBackgroundColor: #BD5D38;
+/* Primary */
+$primaryBackgroundColor: #FFFFFF;
+$primaryHeaderTextColor: #343a40;
+$primaryTextColor: #495057;
+$primaryLinkColor: #0062CC;
+$primaryLinkHoverColor: darken($primaryLinkColor, 30%);
+
+/* Secondary */
+$secondaryBackgroundColor: #333333;
+$secondaryHeaderTextColor: #0062CC;
+$secondaryTextColor: rgba(255,255,255,.5);
+$secondaryLinkColor: rgba(255,255,255,.5);
+$secondaryLinkHoverColor: darken($secondaryLinkColor, 20%);
+
+///* Emphasized Text */
+//$emphasizedTextColor: #BD5D38;
+//$emphasizedLinkColor: lighten($emphasizedTextColor, 20%);
+//$emphasizedLinkHoverColor: darken($emphasizedLinkColor, 20%);

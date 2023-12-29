@@ -1,0 +1,42 @@
+@import "../variables";
+
+section.about-me {
+  .qr-code {
+    text-align: center;
+  }
+
+  /* Social Icons */
+  .social-icons {
+    font-size: 2.5em;
+  }
+
+  .certification-icons {
+    a {
+      height: 100px;
+      width: 100px;
+    }
+
+    img {
+      max-height: 100px;
+      max-width: 100px;
+    }
+
+    .unknown {
+      border: 1px solid #CCC;
+      border-radius: 30px;
+    }
+      //width: 100px;
+  }
+}
+
+@media(max-width: 576px) {
+  section.about-me {
+    .qr-code-container {
+      text-align: center;
+    }
+
+    .social-icons {
+      text-align: center;
+    }
+  }
+}

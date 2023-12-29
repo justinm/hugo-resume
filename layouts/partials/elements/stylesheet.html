@@ -1,0 +1,15 @@
+
+{{ $href := .href -}}
+{{ $integrity := .integrity | default "" -}}
+{{ $external := false -}}
+{{ with .href -}}
+{{ if strings.HasPrefix . "https" -}}
+    {{ $external = true -}}
+{{ else -}}
+    {{ $style := resources.Get . | toCSS | minify | fingerprint -}}
+    {{ $href = $style.Permalink -}}
+    {{ $integrity = $style.Data.Integrity -}}
+{{ end }}
+    <link rel="preload" href='{{ $href }}' as="style" {{ if $integrity }}integrity="{{ $integrity }}"{{ end }} {{ if $external }}crossorigin="anonymous"{{ end }} />
+    <link rel="stylesheet" href='{{ $href }}' {{ if $integrity }}integrity="{{ $integrity }}"{{ end }} {{ if $external }}crossorigin="anonymous"{{ end }} />
+{{ end }}

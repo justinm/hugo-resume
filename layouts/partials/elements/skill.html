@@ -1,0 +1,51 @@
+{{ $devicons := .devicons }}
+{{ with .skill }}
+{{ $colored := "colored" }}
+{{ $skillName := "" }}
+{{ $iconName := "" }}
+{{ $version := "" }}
+{{ $iconset := "devicons" }}
+
+{{ if isset . "name" }}
+    {{ $skillName = .name }}
+    {{ $iconName = .icon | default $skillName | lower }}
+    {{ $version = .version | default "" | lower }}
+    {{ $iconset = .iconset | default "devicons" }}
+
+    {{ if isset . "colored" }}
+        {{ $colored = cond .colored "colored" "" }}
+    {{ end }}
+{{ else }}
+    {{ $skillName = . }}
+    {{ $iconName = . | lower }}
+    {{ $colored = "colored" }}
+{{ end }}
+
+{{ if not (isset $devicons $iconName) }}
+    {{ $iconName = "bash" }}
+    {{ $version = "plain" }}
+{{ else }}
+    {{ $skill := index $devicons $iconName }}
+    {{ if not (in $skill.versions.font $version) }}
+        {{ $version = index $skill.versions.font 0 }}
+    {{ end }}
+{{ end }}
+
+{{ if isset . "link" }}
+    <a href="{{ .link }}" target="_blank">
+    {{ if eq $iconset "devicons" }}
+        <i class="devicon-{{ $iconName }}-{{ $version }} devicon {{ $colored }}"></i> <span>{{ $skillName }}</span>
+    {{ end }}
+    {{ if eq $iconset "fontawesome" }}
+        <i class="fa-solid fa-{{ .icon }}"></i> {{ $skillName }}
+    {{ end }}
+    </a>
+{{ else }}
+    {{ if eq $iconset "devicons" }}
+       <i class="devicon-{{ $iconName }}-{{ $version }} devicon {{ $colored }}"></i> <span>{{ $skillName }}</span>
+    {{ end }}
+    {{ if eq $iconset "fontawesome" }}
+        <i class="fa-solid fa-{{ .icon }}"></i> {{ $skillName }}
+    {{ end }}
+{{ end }}
+{{ end }}

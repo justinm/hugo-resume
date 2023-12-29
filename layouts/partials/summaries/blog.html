@@ -1,0 +1,20 @@
+<div class="item mb-5 p-3">
+  <div class="d-flex flex-column flex-md-row justify-content-between">
+    <div class="content mr-auto m-0">
+      <h3 class="emphasize m-0"><a href="{{ .Permalink }}">{{ .Params.title }}</a></h3>
+    </div>
+    <div class="date emphasize">
+      <span>{{ .Date.Format "January 2, 2006" }}</span>
+    </div>
+  </div>
+  <div class="col mt-3">
+    <div class="mb-3">{{ .Summary | safeHTML }}</div>
+    {{ if isset .Params "tags" }}
+    <div>{{ partial "elements/tags-list" (dict "tags" .Params.tags "context" .) }}</div>
+    {{ end }}
+
+    {{ if isset .Params "advtags" }}
+    <div>{{ partial "elements/tags-list" (dict "tags" .Params.advtags "context" . "path" "advtags") }}</div>
+    {{ end }}
+  </div>
+</div>

@@ -1,18 +1,44 @@
-<section class="resume-section p-3 p-lg-5 d-flex flex-column" id="experience">
-  <div class="my-auto" id="experience-content">
-  <h2 class="mb-5">{{ i18n "experience" }}</h2>
-    {{ range .Site.Data.experience }}
-        <div class="resume-item d-flex flex-column flex-md-row mb-5">
-          <div class="resume-content mr-auto">
-            <h3 class="mb-0">{{ .role }}</h3>
-            <div class="subheading mb-3">{{ .company | markdownify }}</div>
-            <p>{{ .summary | markdownify }}</p>
-          </div>
-          <div class="resume-date text-md-right">
-            <span class="text-primary">{{ .range }}</span>
-          </div>
+<section class="experience text-primary p-3 p-lg-5 d-flex flex-column w-100" id="experience">
+  <div class="my-auto">
+    <h2 class="mb-4">{{ i18n "experience" }}</h2>
+  {{ $experience := .Site.Data.experience }}
+  {{ range $index, $element := .Site.Data.experience }}
+  {{ with $element }}
+    <div class="item mb-5 p-3">
+      <div class="d-flex flex-column flex-md-row justify-content-between">
+        <div class="content mr-auto m-0">
+          <h3 class="emphasize m-0">{{ .role }}</h3>
+          <div class="subheading m-0">{{ .company | markdownify }}</div>
         </div>
+        <div class="date emphasize">
+          <span>{{ .range }}</span>
+        </div>
+      </div>
+      <div class="col mt-3">
+        <p class="summary">{{ .summary | markdownify }}</p>
+        <ul class="achievements">
+        {{ range .achievements }}
+          <li class="mb-2">{{ . | markdownify }}</li>
+        {{ end }}
+        </ul>
+        {{ if and (isset . "technologies") (len .technologies) }}
+        <div class="mt-4">
+          <h4 class="technologies mb-2">{{ i18n "technologies" }}</h4>
+          <ul class="technologies list-inline list-icons">
+          {{ range .technologies }}
+            <li class="list-icon-item list-inline-item">
+              {{ partial "elements/skill.html" (dict "skill" . "devicons" $.Site.Data.devicons) }}
+            </li>
+          {{ end }}
+          </ul>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+    {{ if not (eq $index (sub (len $experience) 1)) }}
+      <hr style="width: 70%; border-style: dashed" />
     {{ end }}
+  {{ end }}
+  {{ end }}
   </div>
-
 </section>

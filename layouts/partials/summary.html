@@ -1,0 +1,27 @@
+{{ $sectionId := .sectionId }}
+{{ $sectionClass := .sectionClass | default $sectionId }}
+{{ with .section }}
+<section class="section-summary {{ $sectionClass }} p-3 p-lg-5 d-flex flex-column" id="{{ $sectionId }}">
+  <div class="my-auto w-100">
+    <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+    <div class="d-flex flex-column flex-md-row justify-content-between">
+      <div class="content mr-auto m-0" >
+          {{ .Content | replaceRE "<p>" "<p class=\"lead\">" | safeHTML  }}
+      </div>
+    </div>
+
+    {{ $featuredPages := where .Pages "Params.featured" true }}
+    {{ if len $featuredPages }}
+    {{ range $featuredPages }}
+      {{ partial (printf "summaries/%s" .Section) . }}
+    {{ end }}
+    {{ end }}
+  </div>
+  {{ if gt .Pages $featuredPages }}
+    <div class="my-auto">
+      <h3>Wait! There's more..</h3>
+      <p>See <a href="{{ .Permalink }}">all {{ .Title | pluralize }}</a> for more examples!</p>
+    </div>
+  {{ end }}
+</section>
+{{ end }}

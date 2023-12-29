@@ -1,0 +1,9 @@
+<ul class="list-inline list-social-icons mb-3">
+{{ range . }}
+<li class="list-inline-item">
+    <a href="{{ .link }}" data-toggle="tooltip" title="{{ .name }}" data-offset="0,10" rel="me">
+        {{ partial "elements/social-icon.html" . }}
+    </a>
+</li>
+{{ end }}
+</ul>

@@ -1,0 +1,32 @@
+@import "../variables";
+
+.list-icons .list-inline-item i:hover {
+  color: $primaryLinkHoverColor;
+}
+
+.list-icons {
+  display: inline-block;
+  justify-content: flex-start;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 3rem;
+}
+
+.list-icons li {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 3px;
+  font-size: 0.7em;
+}
+
+.list-icons .list-icon-item i {
+  padding-right: 6px;
+}
+
+.list-icons .list-icon-item span {
+  white-space: nowrap;
+  vertical-align: middle;
+}

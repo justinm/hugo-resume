@@ -1,0 +1,10 @@
+{{ $siteUrl := .siteUrl }}
+{{ $chartSize := .chartSize | default "150x150" }}
+
+{{ with .contact }}
+<div class="qr-code d-inline-flex justify-content-start flex-column p0 m0" >
+    <img alt="Scannable QR code with contact info"
+         src="https://chart.googleapis.com/chart?cht=qr&chs={{ $chartSize }}&chl=MECARD:N:{{ .lastName }},{{ .firstName }};{{ .address }};TEL:{{ .phone }};EMAIL:{{ .email }};URL:{{ $siteUrl }};NOTE:{{ .contactNote }};;"/>
+<!--    <p class="">Scan contact card</p>-->
+</div>
+{{ end }}
